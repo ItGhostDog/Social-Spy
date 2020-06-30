@@ -1,0 +1,20 @@
+on command:
+	if executor is a player:
+		if {socialspy.on} is true:
+			set {_command} to command
+			set {_args} to arguments
+			loop all players:
+				if loop-player has permission "socialspy.see":
+					if {_args} is set:
+						send "&f[&6Ghost's SocialSpy&f] &f%executor% &8>> &f/%{_command}% %{_args}%" to loop-player
+					else:
+						send "&f[&6Ghost's SocialSpy&f] &f%executor% &8>> &f/%{_command}%" to loop-player
+command /socialspy [<text>]:
+	permission: *
+	trigger:
+		if arg-1 is "on":
+			set {socialspy.on} to true
+			send "&f[&4SocialSpy&f] SocialSpy is now &2On"
+		if arg-1 is "off":
+			set {socialspy.on} to false
+			send "&f[&4SocialSpy&f] SocialSpy is now &4Off"
